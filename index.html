@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>To do List</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minifid Redux-->
+    <script src="https://unpkg.com/redux@4.0.0/dist/redux.min.js"></script>
+
+    <script src="redux/actions/todo_action.js"></script>
+    <script src="redux/reducers/todo_reducer.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <input type="text" name="newTodo" id="newTodo" placeholder="Adicione um novo Todo" required>
+    <button class="btn" onclick="addRow(event)">Adicionar à lista de Todos</button>
+    <div class="row">
+        <div class="card col l5 m12 s12 grey darken-3 white-text">
+            <span class="card-title">Tarefas Terminadas</span>
+            <div class="card-content">
+                <ul id="completadas" class="collection padding">
+                </ul>
+            </div>
+        </div>
+        <div class="card col l5 m12 s12 grey darken-3 white-text">
+            <span class="card-title">Tarefas Pendentes</span>
+            <div class="card-content">
+                <ul id="pendentes" class="collection padding">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addRow(e){
+            e.preventDefault();
+            if(document.getElementById('newTodo').value !== ''){
+                store.dispatch(addTodo(document.getElementById('newTodo').value));
+                // clear input text in DOM
+                document.getElementById('newTodo').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
